@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Групи</h1>
+    {% if user.has_perm('core.add_group') %}
+    <a href="{% url 'core:group_create' %}" class="btn btn-primary">Додати групу</a>
+    {% endif %}
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Назва групи</th>
+            <th>Філія</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups %}
+        <tr>
+            <td>{{ group.name }}</td>
+            <td>{{ group.branch.name|default:'Не вказано' }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2">Поки немає груп</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
