@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1>Дашборд</h1>
+        <p class="lead">Роль: <strong>{{ user_role }}</strong></p>
+    </div>
+</div>
+
+{% if is_admin %}
+<div class="row g-3 mt-4">
+    <div class="col-md-3">
+        <a href="{% url 'core:branch_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Філії</h5>
+                <p class="card-text">Перегляд та створення філій.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'core:subject_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Предмети</h5>
+                <p class="card-text">Керування предметами.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'core:student_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Учні</h5>
+                <p class="card-text">Перегляд та додавання учнів.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'core:group_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Групи</h5>
+                <p class="card-text">Управління групами.</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% elif is_teacher %}
+<div class="row g-3 mt-4">
+    <div class="col-md-4">
+        <a href="{% url 'core:subject_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Предмети</h5>
+                <p class="card-text">Доступ до предметів.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'core:student_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Учні</h5>
+                <p class="card-text">Список учнів.</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'core:group_list' %}" class="card text-decoration-none text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Групи</h5>
+                <p class="card-text">Перегляд груп.</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% else %}
+<p class="mt-4">У вас немає призначеної ролі. Зверніться до адміністратора.</p>
+{% endif %}
+{% endblock %}
